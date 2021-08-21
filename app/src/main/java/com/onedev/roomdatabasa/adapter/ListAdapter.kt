@@ -3,8 +3,10 @@ package com.onedev.roomdatabasa.adapter
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.onedev.roomdatabasa.databinding.LayoutListUserBinding
+import com.onedev.roomdatabasa.fragments.list.ListFragmentDirections
 import com.onedev.roomdatabasa.model.User
 
 class ListAdapter: RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
@@ -24,6 +26,11 @@ class ListAdapter: RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
                 tvFirstName.text = user.firstName
                 tvLastName.text = user.lastName
                 tvAge.text = user.age.toString()
+
+                itemView.setOnClickListener {
+                    val action = ListFragmentDirections.actionListFragmentToUpdateFragment(user)
+                    itemView.findNavController().navigate(action)
+                }
             }
         }
     }

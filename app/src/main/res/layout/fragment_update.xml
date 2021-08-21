@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="24dp"
-    tools:context=".fragments.add.AddFragment">
+    tools:context=".fragments.update.UpdateFragment">
+
 
     <EditText
         android:id="@+id/edt_first_name"
@@ -44,10 +45,10 @@
         app:layout_constraintTop_toBottomOf="@+id/edt_last_name" />
 
     <Button
-        android:id="@+id/btn_save"
+        android:id="@+id/btn_update"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/save"
+        android:text="@string/update"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
