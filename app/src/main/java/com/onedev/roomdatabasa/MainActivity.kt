@@ -22,4 +22,13 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.fragmentContainerView)
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
+
+    override fun onBackPressed() {
+        supportFragmentManager.apply {
+            if ((findFragmentById(R.id.fragmentContainerView)?.childFragmentManager?.backStackEntryCount) ?: 0 > 1)
+                super.onBackPressed()
+            else
+                finish()
+        }
+    }
 }
