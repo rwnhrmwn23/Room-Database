@@ -1,9 +1,9 @@
 package com.onedev.roomdatabasa.fragments.list
 
+import android.app.AlertDialog
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -30,6 +30,7 @@ class ListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setHasOptionsMenu(true)
 
         viewModel = ViewModelProvider(this).get(UserViewModel::class.java)
 
@@ -43,7 +44,33 @@ class ListFragment : Fragment() {
 
         viewModel.readAllData.observe(viewLifecycleOwner, {
             adapter.setData(it)
+            binding?.rvList?.smoothScrollToPosition(adapter.itemCount - 1)
         })
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.main_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.menu_delete) {
+            deleteAllUser()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun deleteAllUser() {
+        val builder = AlertDialog.Builder(requireContext())
+            .setPositiveButton("Yes") { _, _ ->
+                viewModel.deleteAllUser()
+                Toast.makeText(requireContext(), "Success Delete All Data", Toast.LENGTH_SHORT)
+                    .show()
+            }
+            .setNegativeButton("No") { _, _ -> }
+            .setTitle("Delete All Data")
+            .setMessage("Are you sure you want to delete all data ?")
+            .create()
+        builder.show()
     }
 
     override fun onDestroyView() {
