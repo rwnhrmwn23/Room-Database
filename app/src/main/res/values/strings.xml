@@ -2,4 +2,8 @@
     <string name="app_name">RoomDatabasa</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="id">1</string>
+    <string name="john">John</string>
+    <string name="doe">Doe</string>
+    <string name="age">(25)</string>
 </resources>
